@@ -1,0 +1,89 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#layout {
+  display: flex;
+  height: 100vh;
+}
+
+#sidebar {
+  width: 260px;
+  border-right: 1px solid #ccc;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+#page-title {
+    padding-left: 15px;
+}
+
+.preview {
+  padding: 8px;
+  color: #999;
+  cursor: pointer;
+  white-space: nowrap;  /* Remove text wrap to only show a preview of each question, not the entire text. */
+  overflow: hidden;            
+  text-overflow: ellipsis; /* Replace overflow text with an ellipsis (...) */
+}
+
+.card {
+  margin-bottom: 12px;
+}
+
+.question {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.answer {
+  color: #8bc98b;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+#error-message {
+  background: #fde8e8;
+  color: #b00020;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+button {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-right: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+input {
+  display: block;
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 300px;
+  height: 60px;
+}
+
+dialog .close-btn {
+  position: absolute;
+  right: 10px;
+  color: #b00020;
+}
