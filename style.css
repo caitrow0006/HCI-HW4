@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
+  background-color: #E6F2E1;
 }
 
 #layout {
@@ -18,8 +19,14 @@ body {
 
 #main {
   flex: 1;
-  padding: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 100px;
   overflow-y: auto;
+  /* https://www.w3schools.com/css/css3_flexbox.asp */
+  /* https://www.w3schools.com/cssref/css3_pr_flex-direction.php */
+  display: flex;
+  flex-direction: column;
 }
 
 #page-title {
@@ -36,16 +43,44 @@ body {
 }
 
 .card {
-  margin-bottom: 12px;
+  background-color: #FFFFFF;
+  /*https://www.w3schools.com/css/css_padding.asp*/
+  padding: 25px;
+  border: 3px solid #999;
+  /*https://www.w3schools.com/css/css3_shadows_box.asp*/
+  box-shadow: 10px 10px #ccc;
+  /*margin-bottom: 12px;*/
+  /*font-size: 50px;*/
 }
 
 .question {
+    padding: 10px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 24px;
+}
+
+.question:hover {
+    background-color: #CEF7BC;
+}
+
+.hint {
+    font-size: 16px;
+}
+
+#add-form {
+    padding: 25px;
+    border: 1px solid #ccc;
+    /* https://www.w3schools.com/css/css_margin.asp */
+    margin-top: auto;
+}
+
+#prev-next {
+    padding: 25px;
 }
 
 .answer {
   color: #8bc98b;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -86,4 +121,9 @@ dialog .close-btn {
   position: absolute;
   right: 10px;
   color: #b00020;
+}
+
+.preview.active {
+    font-weight: bold;
+    color: #777;
 }

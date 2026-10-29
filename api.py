@@ -27,7 +27,17 @@ questions = [{
                 "id": 2,
                 "q": "What is the main goal of the ideation phase of iterative design?",
                 "a": "Generating as many possible design solutions as possible"
-                }
+                },
+             {
+                "id": 3,
+                "q": "What is a slip?",
+                "a": "Correct plan, flawed execution"
+                },
+             {
+                "id": 4,
+                "q": "What is a mistake?",
+                "a": "flawed plan, correct execution"
+                },
             ]
 
 class QuestionRequest(BaseModel):

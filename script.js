@@ -16,6 +16,10 @@ const editDialog = document.querySelector("#edit-dialog");
 const editQuestion = document.querySelector("#edit-question");
 const editAnswer = document.querySelector("#edit-answer");
 // TODO: grab references to any necessary elements you added to index.html (search, counter, prev/next buttons)
+//https://www.geeksforgeeks.org/html/html-dom-getelementbyid-method/
+const prevButton = document.getElementById("prev-button");
+const nextButton = document.getElementById("next-button");
+const counter = document.getElementById("counter");
 
 
 // ---------- Errors ----------
@@ -116,13 +120,16 @@ function showCard() {
   deleteButton.addEventListener("click", function () {
     deleteQuestion(question);
   });
+    //https://www.wikihow.tech/Change-Button-Color-in-Javascript
+    deleteButton.style.backgroundColor = "#E34A2D";
 
   const editButton = document.createElement("button");
   editButton.textContent = "Edit";
   editButton.addEventListener("click", function () {
     openEditDialog(question);
   });
-
+    editButton.style.backgroundColor = "#FADF75";
+    
   const questionText = document.createElement("p");
   questionText.className = "question";
   questionText.textContent = question.q;
@@ -134,9 +141,30 @@ function showCard() {
   questionText.addEventListener("click", function () {
     answerText.classList.toggle("hidden");
   });
+    
+    const hintText = document.createElement("p");
+    hintText.className = "hint";
+    hintText.textContent = "(click question to reveal answer)";
+    
+    //const prevButton = document.createElement("button");
+//    prevButton.textContent = "Previous";
+//    prevButton.addEventListener("click", function () {
+//      prevCard();
+//    });
+    
+    //counter.textContent = "test content";
+    
+    //const nextButton = document.createElement("button");
+//    nextButton.textContent = "Next";
+//    nextButton.addEventListener("click", function () {
+//      nextCard();
+//    });
 
-  card.append(deleteButton, editButton, questionText, answerText);
+  card.append(questionText, answerText, hintText, deleteButton, editButton);
   cardArea.append(card);
+    
+  updateCounter()
+    
 }
 
 
@@ -145,8 +173,35 @@ function showCard() {
 // TODO: Previous / Next. Write functions that change currentIndex to the appropriate value
 // (wrapping around at both ends) and then call showPage(). Then write event listeners to attach these
 // functions to the appropriate Previous/Next buttons. 
+function prevCard() {
+    if (questions.length === 0) {
+        return;
+    }
+    
+    currentIndex = ((currentIndex - 1) % questions.length);
+    //updateCounter()
+    showPage();
+}
+
+function nextCard() {
+    if (questions.length === 0) {
+        return;
+    }
+    
+    currentIndex = ((currentIndex + 1) % questions.length);
+    //updateCounter()
+    showPage();
+}
+
+//https://www.w3schools.com/jsref/met_document_addeventlistener.asp
+prevButton.addEventListener("click", prevCard);
+nextButton.addEventListener("click", nextCard);
 
 // TODO: Update the progress text ("Card 3 of 3") in the counter whenever the card changes.
+function updateCounter() {
+    //add one so it goes from 1 to total instead of 0 to 1 less than totla
+    counter.textContent = "Card " + (currentIndex + 1) + " of " + questions.length;
+}
 
 
 // ---------- Actions ----------
@@ -177,14 +232,17 @@ document.querySelector("#update-button").addEventListener("click", async functio
 });
 
 document.querySelector("#add-button").addEventListener("click", async function () {
-  await apiSend("POST", "/add", {
-    question: newQuestion.value,
-    answer: newAnswer.value
-  });
-  newQuestion.value = "";
-  newAnswer.value = "";
-  currentIndex = questions.length;
-  renderPage();
+    if (newQuestion.value != "" && newAnswer.value != "") {
+        await apiSend("POST", "/add", {
+          question: newQuestion.value,
+          answer: newAnswer.value
+        });
+        newQuestion.value = "";
+        newAnswer.value = "";
+        currentIndex = questions.length;
+        renderPage();
+    }
+  
 });
 
 
