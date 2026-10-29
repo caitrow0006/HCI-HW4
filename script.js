@@ -16,7 +16,6 @@ const editDialog = document.querySelector("#edit-dialog");
 const editQuestion = document.querySelector("#edit-question");
 const editAnswer = document.querySelector("#edit-answer");
 // TODO: grab references to any necessary elements you added to index.html (search, counter, prev/next buttons)
-//https://www.geeksforgeeks.org/html/html-dom-getelementbyid-method/
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");
 const counter = document.getElementById("counter");
